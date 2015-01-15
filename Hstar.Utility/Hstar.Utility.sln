@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hstar.Utility", "Hstar.Utility\Hstar.Utility.csproj", "{99DB279C-AFA1-4AA7-8474-6FF1E7B06E6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hstar.Utility.Test", "Hstar.Utility.Test\Hstar.Utility.Test.csproj", "{F41C34DA-AC04-4378-9E12-227B969346E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99DB279C-AFA1-4AA7-8474-6FF1E7B06E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99DB279C-AFA1-4AA7-8474-6FF1E7B06E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99DB279C-AFA1-4AA7-8474-6FF1E7B06E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99DB279C-AFA1-4AA7-8474-6FF1E7B06E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41C34DA-AC04-4378-9E12-227B969346E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41C34DA-AC04-4378-9E12-227B969346E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41C34DA-AC04-4378-9E12-227B969346E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41C34DA-AC04-4378-9E12-227B969346E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
