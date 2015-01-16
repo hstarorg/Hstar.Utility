@@ -57,6 +57,7 @@
     <Compile Include="Cryptography\HashEncryptionTest.cs" />
     <Compile Include="Cryptography\RSAEncryptionTest.cs" />
     <Compile Include="Cryptography\SymmetricEncryptionTest.cs" />
+    <Compile Include="Helpers\RmbHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
