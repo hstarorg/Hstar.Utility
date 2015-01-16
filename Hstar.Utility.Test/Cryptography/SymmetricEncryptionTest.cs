@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Text;
 using Hstar.Utility.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hstar.Utility.Test.Cryptography
 {
     [TestClass]
-    public class AesCryptographyTest
-    {
+    public class SymmetricEncryptionTest{
         /// <summary>
         ///  测试AES加解密,key和keyVecter一致
         /// </summary>
@@ -132,6 +132,32 @@ namespace Hstar.Utility.Test.Cryptography
             const string sourceStr = "humin123";
             var targetStr = se.Encrypt(sourceStr);
             Assert.AreEqual(sourceStr, se.Decrypt(targetStr));
+        }
+
+        /// <summary>
+        /// 测试指定编码
+        /// </summary>
+        [TestMethod]
+        public void TestMethod12()
+        {
+            var se = new SymmetricEncryption("爱我中华爱我中华1574551￥#@54633", 0);
+            const string sourceStr = "爱我中华爱";
+            var targetStr = se.Encrypt(sourceStr);
+            var targetStr2 = se.Encrypt(sourceStr, Encoding.ASCII);
+            Assert.AreNotEqual(targetStr,targetStr2);
+            Assert.AreEqual(sourceStr, se.Decrypt(targetStr));
+        }
+
+        /// <summary>
+        /// 测试特定编码加解密
+        /// </summary>
+        [TestMethod]
+        public void TestMethod13()
+        {
+            var se = new SymmetricEncryption("爱我中华爱我中华1574551￥#@54633", 0);
+            const string sourceStr = "爱我中华爱";
+            Assert.AreNotEqual(sourceStr, se.Decrypt(se.Encrypt(sourceStr, Encoding.UTF8), Encoding.Unicode));
+            Assert.AreEqual(sourceStr, se.Decrypt(se.Encrypt(sourceStr, Encoding.Unicode), Encoding.Unicode));
         }
     }
 }

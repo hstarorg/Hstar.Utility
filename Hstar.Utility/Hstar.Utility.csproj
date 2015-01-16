@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\HashAlgorithmType.cs" />
+    <Compile Include="Cryptography\HashEncryption.cs" />
     <Compile Include="Cryptography\SymmetricAlgorithmType.cs" />
     <Compile Include="Cryptography\SymmetricEncryption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

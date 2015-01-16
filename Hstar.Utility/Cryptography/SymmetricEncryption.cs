@@ -6,7 +6,7 @@ using System.Text;
 namespace Hstar.Utility.Cryptography
 {
     /// <summary>
-    ///     对称加密
+    /// 对称加密
     /// </summary>
     public class SymmetricEncryption
     {
@@ -15,7 +15,7 @@ namespace Hstar.Utility.Cryptography
         private SymmetricAlgorithm sa;
 
         /// <summary>
-        ///     AES加解密构造函数
+        /// 对称加解密构造函数
         /// </summary>
         /// <param name="key">加密/解密字符串（至少8位）</param>
         public SymmetricEncryption(string key)
@@ -24,7 +24,7 @@ namespace Hstar.Utility.Cryptography
         }
 
         /// <summary>
-        /// AES加解密构造函数
+        /// 对称加解密构造函数
         /// </summary>
         /// <param name="key">密钥（至少8位）</param>
         /// <param name="saType">对称加密类型</param>
@@ -34,7 +34,7 @@ namespace Hstar.Utility.Cryptography
         }
 
         /// <summary>
-        ///     AES加解密构造函数
+        /// 对称加解密构造函数
         /// </summary>
         /// <param name="key">密钥（至少8位）</param>
         /// <param name="keyVector">密钥向量（至少8位）</param>
@@ -43,7 +43,7 @@ namespace Hstar.Utility.Cryptography
         }
 
         /// <summary>
-        /// AES加解密构造函数
+        /// 对称加解密构造函数
         /// </summary>
         /// <param name="key">密钥（至少8位）</param>
         /// <param name="keyVector">密钥向量（至少8位）</param>
@@ -52,6 +52,7 @@ namespace Hstar.Utility.Cryptography
         {
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(keyVector))
             {
+                // ReSharper disable once NotResolvedInText
                 throw new ArgumentNullException("密钥或者密钥向量不能为空！");
             }
             if (key.Length < 8 || keyVector.Length < 8)
@@ -61,16 +62,16 @@ namespace Hstar.Utility.Cryptography
 
             this.key = key;
             this.keyVector = keyVector;
-            BuildCryptpTransform(saType);
+            this.InitCryptoServiceProvider(saType);
         }
 
         /// <summary>
-        ///     构建对称算法对象，并设置属性
+        /// 构建对称算法对象，并设置属性
         /// </summary>
         /// <param name="saType">对称算法类型</param>
-        private void BuildCryptpTransform(SymmetricAlgorithmType saType)
+        private void InitCryptoServiceProvider(SymmetricAlgorithmType saType)
         {
-            sa = GetCryptoServiceProvider(saType);
+            sa = this.GetCryptoServiceProvider(saType);
 
             // Rfc2898DeriveBytes - 通过使用基于 HMACSHA1 的伪随机数生成器，实现基于密码的密钥派生功能 (PBKDF2 - 一种基于密码的密钥派生函数)
             // 通过 密码 和 salt 派生密钥
@@ -121,10 +122,11 @@ namespace Hstar.Utility.Cryptography
         /// 加密字符串
         /// </summary>
         /// <param name="strSource">要加密的字符串</param>
+        /// <param name="encoding">编码（注：如果要加密的字符串有中文，请不要使用不支持中文的编码，如ASCII）</param>
         /// <returns>返回Base64密文</returns>
-        public string Encrypt(string strSource)
+        public string Encrypt(string strSource, Encoding encoding =null)
         {
-            byte[] data = Encoding.UTF8.GetBytes(strSource);
+            byte[] data = (encoding??Encoding.UTF8).GetBytes(strSource);
             // 加密后的输出流
             var encryptStream = new MemoryStream();
             // 将加密后的目标流（encryptStream）与加密转换（encryptTransform）相连接
@@ -139,8 +141,9 @@ namespace Hstar.Utility.Cryptography
         /// 解密字符串
         /// </summary>
         /// <param name="strSource">要解密的字符串（Base64字符串）</param>
+        /// <param name="encoding">编码（注：如果要加密的字符串有中文，请不要使用不支持中文的编码，如ASCII）</param>
         /// <returns>返回原文</returns>
-        public string Decrypt(string strSource)
+        public string Decrypt(string strSource,Encoding encoding=null)
         {
             byte[] encryptBytes = Convert.FromBase64String(strSource);
             // 解密后的输出流
@@ -151,7 +154,7 @@ namespace Hstar.Utility.Cryptography
             decryptor.Write(encryptBytes, 0, encryptBytes.Length);
             decryptor.Close();
             // 将解密后所得到的流转换为字符串
-            return Encoding.UTF8.GetString(decryptStream.ToArray());
+            return (encoding??Encoding.UTF8).GetString(decryptStream.ToArray());
         }
     }
 }
