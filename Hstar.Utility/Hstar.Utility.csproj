@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\DSAEncryption.cs" />
+    <Compile Include="Cryptography\RSAEncryption.cs" />
     <Compile Include="Cryptography\HashAlgorithmType.cs" />
     <Compile Include="Cryptography\HashEncryption.cs" />
     <Compile Include="Cryptography\SymmetricAlgorithmType.cs" />

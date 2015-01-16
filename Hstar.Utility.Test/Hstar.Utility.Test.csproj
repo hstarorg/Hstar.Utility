@@ -53,7 +53,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Cryptography\DSAEncryptionTest.cs" />
     <Compile Include="Cryptography\HashEncryptionTest.cs" />
+    <Compile Include="Cryptography\RSAEncryptionTest.cs" />
     <Compile Include="Cryptography\SymmetricEncryptionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
